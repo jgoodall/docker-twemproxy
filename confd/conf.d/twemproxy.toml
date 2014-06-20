@@ -3,5 +3,5 @@ src = "twemproxy.tmpl"
 dest = "/twemproxy.yaml"
 keys = [
   "/services/twemproxy/listen",
-  "/services/twemproxy/servers",
+  "/services/redis",
 ]
