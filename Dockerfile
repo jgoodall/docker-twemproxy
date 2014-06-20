@@ -21,7 +21,7 @@ RUN curl -qL https://twemproxy.googlecode.com/files/nutcracker-0.3.0.tar.gz | ta
 RUN cd nutcracker-0.3.0 && ./configure && make && mv src/nutcracker /twemproxy
 
 # Install confd
-RUN curl -qL https://github.com/kelseyhightower/confd/releases/download/v0.4.0-beta3/confd-0.4.0-beta3-linux-amd64 -o /confd && chmod +x /confd
+RUN curl -qL https://github.com/kelseyhightower/confd/releases/download/v0.4.1/confd-0.4.1-linux-amd64 -o /confd && chmod +x /confd
 RUN mkdir -p /etc/confd/{conf.d,templates}
 
 # Copy local files
