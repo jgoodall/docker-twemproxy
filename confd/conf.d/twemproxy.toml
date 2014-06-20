@@ -1,6 +1,6 @@
 [template]
 src = "twemproxy.tmpl"
-dest = "/tmp/twemproxy.yaml"
+dest = "/twemproxy.yaml"
 keys = [
   "/services/twemproxy/listen",
   "/services/twemproxy/servers",
