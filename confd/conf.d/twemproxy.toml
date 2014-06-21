@@ -5,3 +5,4 @@ keys = [
   "/services/twemproxy/listen",
   "/services/redis",
 ]
+reload_cmd = "/usr/bin/supervisorctl twemproxy restart"
