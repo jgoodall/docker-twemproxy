@@ -26,9 +26,12 @@ RUN mkdir -p /etc/confd/{conf.d,templates}
 
 # Copy local files
 ADD run.sh /run.sh
+
 ADD supervisor/twemproxy.conf /etc/supervisor/conf.d/twemproxy.conf
+
 ADD confd/conf.d/twemproxy.toml /etc/confd/conf.d/twemproxy.toml
 ADD confd/templates/twemproxy.tmpl /etc/confd/templates/twemproxy.tmpl
+ADD supervisor/confd.conf /etc/supervisor/conf.d/confd.conf
 
 RUN chmod 755 /*.sh
 
