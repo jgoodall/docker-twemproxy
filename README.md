@@ -10,8 +10,5 @@ The twemproxy container will use [confd](https://github.com/kelseyhightower/conf
 
 The twemproxy information will be published to `etcd` and can be retrieved like this:
 
-    etcdctl get /services/twemproxy/listen
-
-which will return something like:
-
-    10.10.100.1:6000
+    etcdctl get /services/twemproxy/host
+    etcdctl get /services/twemproxy/port
