@@ -40,8 +40,4 @@ ADD supervisor/confd.conf /etc/supervisor/conf.d/confd.conf
 
 EXPOSE 6000
 
-# DEBUG ONLY
-RUN apt-get -qy openssh-server
-EXPOSE 22
-
 CMD ["/usr/bin/supervisord -c /etc/supervisor/supervisord.conf"]
