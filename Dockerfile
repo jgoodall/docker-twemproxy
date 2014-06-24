@@ -34,7 +34,7 @@ ADD confd/conf.d/twemproxy.toml /etc/confd/conf.d/twemproxy.toml
 ADD confd/templates/twemproxy.tmpl /etc/confd/templates/twemproxy.tmpl
 
 # Copy supervisord files
-ADD supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 ADD supervisor/twemproxy.conf /etc/supervisor/conf.d/twemproxy.conf
 ADD supervisor/confd.conf /etc/supervisor/conf.d/confd.conf
 
