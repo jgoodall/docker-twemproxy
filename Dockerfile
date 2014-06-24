@@ -25,6 +25,9 @@ RUN cd / && rm -rf nutcracker-0.3.0
 RUN curl -qL https://github.com/kelseyhightower/confd/releases/download/v0.5.0-beta2/confd-0.5.0-beta2-linux-amd64 -o /confd && chmod +x /confd
 RUN mkdir -p /etc/confd/{conf.d,templates}
 
+# Better logging of services in supervisor
+RUN apt-get install -y python-pip && pip install supervisor-stdout
+
 # Set up run script
 ADD run.sh /run.sh
 RUN chmod 755 /run.sh
@@ -35,8 +38,6 @@ ADD confd/templates/twemproxy.tmpl /etc/confd/templates/twemproxy.tmpl
 
 # Copy supervisord files
 ADD supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-ADD supervisor/twemproxy.conf /etc/supervisor/conf.d/twemproxy.conf
-ADD supervisor/confd.conf /etc/supervisor/conf.d/confd.conf
 
 EXPOSE 6000
 
