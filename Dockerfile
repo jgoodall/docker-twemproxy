@@ -29,17 +29,14 @@ RUN mkdir -p /etc/confd/{conf.d,templates}
 RUN echo "environment = ETCD_HOST=${ETCD_HOST}" >> /etc/supervisor/supervisord.conf
 RUN cat /etc/supervisor/supervisord.conf
 
-# Copy local files
-ADD run.sh /run.sh
-
+# Copy confd files
 ADD confd/conf.d/twemproxy.toml /etc/confd/conf.d/twemproxy.toml
 ADD confd/templates/twemproxy.tmpl /etc/confd/templates/twemproxy.tmpl
 
+# Copy supervisord files
 ADD supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD supervisor/twemproxy.conf /etc/supervisor/conf.d/twemproxy.conf
 ADD supervisor/confd.conf /etc/supervisor/conf.d/confd.conf
-
-RUN chmod 755 /*.sh
 
 EXPOSE 6000
 
