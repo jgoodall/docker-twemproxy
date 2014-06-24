@@ -25,9 +25,9 @@ RUN cd / && rm -rf nutcracker-0.3.0
 RUN curl -qL https://github.com/kelseyhightower/confd/releases/download/v0.5.0-beta2/confd-0.5.0-beta2-linux-amd64 -o /confd && chmod +x /confd
 RUN mkdir -p /etc/confd/{conf.d,templates}
 
-# Run docker run with -e ETCD_HOST=<ip>:<port>
-RUN echo "environment = ETCD_HOST=${ETCD_HOST}" >> /etc/supervisor/supervisord.conf
-RUN cat /etc/supervisor/supervisord.conf
+# Set up run script
+ADD run.sh /run.sh
+RUN chmod 755 /run.sh
 
 # Copy confd files
 ADD confd/conf.d/twemproxy.toml /etc/confd/conf.d/twemproxy.toml
@@ -40,4 +40,4 @@ ADD supervisor/confd.conf /etc/supervisor/conf.d/confd.conf
 
 EXPOSE 6000
 
-CMD ["/usr/bin/supervisord -c /etc/supervisor/supervisord.conf"]
+CMD ["/run.sh"]
