@@ -20,8 +20,9 @@ RUN apt-get -qy install supervisor curl libtool make automake
 RUN curl -qL https://twemproxy.googlecode.com/files/nutcracker-0.3.0.tar.gz | tar xzf -
 RUN cd nutcracker-0.3.0 && ./configure --enable-debug=log && make && mv src/nutcracker /twemproxy
 RUN cd / && rm -rf nutcracker-0.3.0
+
 # Install confd
-RUN curl -qL https://github.com/kelseyhightower/confd/releases/download/v0.4.1/confd-0.4.1-linux-amd64 -o /confd && chmod +x /confd
+RUN curl -qL https://github.com/kelseyhightower/confd/releases/download/v0.5.0-beta2/confd-0.5.0-beta2-linux-amd64 -o /confd && chmod +x /confd
 RUN mkdir -p /etc/confd/{conf.d,templates}
 
 # Copy local files
