@@ -26,13 +26,16 @@ Finally, define the `etcd` peer `confd` should use as an [environment variable](
     # publish the redis host:ip information into etcd
     etcdctl set /services/redis/A 127.0.0.1:6101
     etcdctl set /services/redis/B 127.0.0.1:6102
-    # define the desired twemproxy port
+    # define the desired twemproxy and stats port
     TWEMPROXY_PORT=6100
+    TWEMPROXY_STATS_PORT=6100
     # set the twemproxy port in etcd
     etcdctl set /services/twemproxy/port ${TWEMPROXY_PORT}
     # use the port you set above when you start the container
-    docker run --name=twemproxy --rm -p ${TWEMPROXY_PORT}:6000 -e ETCD_HOST=127.0.0.1:4001 jgoodall/twemproxy
+    docker run --name=twemproxy --rm -p ${TWEMPROXY_PORT}:6000 -p ${TWEMPROXY_STATS_PORT}:6001 -e ETCD_HOST=127.0.0.1:4001 jgoodall/twemproxy
     # publish the twemproxy host info if desired
     etcdctl set /services/twemproxy/host 127.0.0.1
     # connect using a redis client
     redis-cli -h `etcdctl get /services/twemproxy/host` -p `etcdctl get /services/twemproxy/port`
+    # get stats on cluster (use `docker ps` to get `<ip>`)
+    curl <ip>:$TWEMPROXY_STATS_PORT
