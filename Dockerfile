@@ -32,6 +32,6 @@ ADD confd/templates/twemproxy.tmpl /etc/confd/templates/twemproxy.tmpl
 # Copy supervisord files
 ADD supervisord.conf /etc/supervisor/supervisord.conf
 
-EXPOSE 6000
+EXPOSE 6000 6222
 
 CMD ["/run.sh"]
