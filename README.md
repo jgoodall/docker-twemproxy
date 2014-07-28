@@ -20,6 +20,8 @@ Finally, define the `etcd` peer `confd` should use as an [environment variable](
 
 ## Usage
 
+You may want to customize the twemproxy configuration in `confd/templates/twemproxy.tmpl` - particularly the `hash_tag` option.
+
     # start some redis containers
     docker run --name=redis-A --rm -p 6101:6379 dockerfile/redis
     docker run --name=redis-B --rm -p 6102:6379 dockerfile/redis
