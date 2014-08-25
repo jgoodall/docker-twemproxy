@@ -8,7 +8,7 @@
 
 FROM jgoodall/ubuntu-confd
 
-MAINTAINER "John Goodall <jgoodall@ornl.gov>"
+MAINTAINER ian@blenke.com
 
 ENV DEBIAN_FRONTEND noninteractive
 
