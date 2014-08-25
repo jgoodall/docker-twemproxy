@@ -13,6 +13,10 @@ if [ -n "${ETCD_HOST:+x}" ]; then
   curl -L "http://${ETCD_HOST}/v2/keys/services/twemproxy" -XPUT -d dir=true
   curl -L "http://${ETCD_HOST}/v2/keys/services/redis" -XPUT -d dir=true
 fi
+# Auto-detect a consul linked container
+for var in $(env | cut -d= -f1 | grep -e "_PORT_${CONSUL_HTTP_PORT:-8500}_TCP_ADDR"); do
+  export CONSUL_HOST=$(eval echo \$${var})
+done
 # Run docker run with -e CONSUL_HOST=<ip>:<port>
 if [ -n "${CONSUL_HOST}" ]; then
   mv /etc/supervisor/supervisord.conf /tmp/supervisord.conf
